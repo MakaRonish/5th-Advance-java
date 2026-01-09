@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+
+</head>
+<body>
+<h1>Add Car</h1>
+
+<!--  th:field ko name bean ko sanga same hunu paryo-->
+<form th:action="@{/add}" method="POST" th:object="${car}">
+	Make <input type="text" th:field="*{make}"><br>
+	Model <input type="text" th:field="*{model}"><br>
+	Year <input type="number" th:field="*{year}"><br>
+	Mileage <input type="number" step="0.01" th:field="*{mileage}"><br>
+	Hybrid <input type="checkbox" th:field="*{hybrid}"><br>
+	<input type="submit" value="Add Car">
+
+</form>
+
+<a th:href="@{/view}")><button>View Car</button></a>
+</body>
+</html>
