@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Player</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/Add}">Add Player</a>
+    <a th:href="@{/View}">View Teams</a>
+</nav>
+
+<h1>Add Player</h1>
+
+<form action="" th:object="${player}" method="POST">
+    ID
+    <input type="number" th:field="*{ID}"><br>
+    Name
+    <input type="text" th:field="*{NAME}"><br>
+    Class
+    <select th:field="*{Unit_Class}">
+        <option th:each="class:${classes}" th:value="${class}" th:text="${class}"></option>
+    </select><br>
+    Team <br>
+    <div th:each="t : ${Team}">
+        <input type="radio" th:field="*{Team}" th:value="${t}">
+        <span th:text="${t}"></span><br>
+    </div><br>
+
+    <input type="submit" value="Add Player">
+</form>
+</body>
+</html>

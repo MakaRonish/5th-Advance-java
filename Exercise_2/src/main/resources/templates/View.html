@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Teams</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/Add}">Add Player</a>
+    <a th:href="@{/View}">View Teams</a>
+</nav>
+
+
+
+    <h1>Red Team</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Unit class</th>
+        <th>Team</th>
+    </tr>
+    <tr th:each="team:${Red_Team}">
+        <td th:text="${team.ID}"></td>
+        <td th:text="${team.NAME}"></td>
+        <td th:text="${team.Unit_Class}"></td>
+        <td th:text="${team.Team}"></td>
+    </tr>
+</table>
+
+    <h1>Blue Team</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Unit class</th>
+        <th>Team</th>
+    </tr>
+    <tr th:each="team:${Blue_Team}">
+        <td th:text="${team.ID}"></td>
+        <td th:text="${team.NAME}"></td>
+        <td th:text="${team.Unit_Class}"></td>
+        <td th:text="${team.Team}"></td>
+    </tr>
+</table>
+</body>
+</html>
