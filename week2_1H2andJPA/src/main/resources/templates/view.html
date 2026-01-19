@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/Add}">Add Player</a>
+    <a th:href="@{/View}">View Teams</a>
+</nav>
+<h1>View</h1>
+
+<table border=1>
+	<tr>
+		<th>id</th>
+		<th>isbn</th>
+		<th>title</th>
+		<th>price</th>
+		<th>genre</th>
+	</tr>
+	<tr th:each="game:${games}">
+		<th th:text="${game.id}"></th>
+		<th th:text="${game.isbn}"></th>
+		<th th:text="${game.title}"></th>
+		<th th:text="${game.price}"></th>
+		<th th:text="${game.genre}"></th>
+		<th th:if="${game.genre=='Horror'}"><img th:src="@{/img/ghost.avif}" ></th>
+	</tr>
+
+</table>
+
+</body>
+</html>
