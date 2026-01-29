@@ -16,12 +16,14 @@ import ca.sheridancollege.makaju.beans.Player;
 
 import ca.sheridancollege.makaju.repositories.PlayerRepository;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Controller
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 public class MainController {
 	
-	PlayerRepository playerRepo;
+	private final PlayerRepository playerRepo;
 	boolean accId=true;
 	boolean accName=true;
 	boolean accClass=true;
@@ -83,6 +85,7 @@ public class MainController {
 		}
 		else {
 			pageable = PageRequest.of(0, 100, Sort.by("id").descending());
+			accId=true;
 			
 		}
 
@@ -92,7 +95,17 @@ public class MainController {
 	}
 	@GetMapping("/name")
 	public String sortbyName(Model model) {
-		Pageable pageable = PageRequest.of(0, 100, Sort.by("name").ascending());
+		Pageable pageable;
+		if (accName) {
+			pageable = PageRequest.of(0, 100, Sort.by("name").ascending());
+			accName=false;
+		}
+		else {
+			pageable = PageRequest.of(0, 100, Sort.by("name").descending());
+			accName=true;
+			
+		}
+		
 		
 		model.addAttribute("Players", playerRepo.findAll(pageable));		
 		
@@ -100,15 +113,34 @@ public class MainController {
 	}
 	@GetMapping("/class")
 	public String sortbyClass(Model model) {
-		Pageable pageable = PageRequest.of(0, 100, Sort.by("unitClass").ascending());
 		
+		Pageable pageable;
+		if (accClass) {
+			pageable = PageRequest.of(0, 100, Sort.by("unitClass").ascending());
+			accClass=false;
+		}
+		else {
+			pageable = PageRequest.of(0, 100, Sort.by("unitClass").descending());
+			accClass=true;
+			
+		}
 		model.addAttribute("Players", playerRepo.findAll(pageable));		
 		
 		return "View.html";
 	}
 	@GetMapping("/points")
 	public String sortbyPoint(Model model) {
-		Pageable pageable = PageRequest.of(0, 100, Sort.by("guildPoint").ascending());
+		Pageable pageable;
+		if (accPoint) {
+			pageable = PageRequest.of(0, 100, Sort.by("guildPoint").ascending());
+			accPoint=false;
+		}
+		else {
+			pageable = PageRequest.of(0, 100, Sort.by("guildPoint").descending());
+			accPoint=true;
+			
+		}
+		
 		
 		model.addAttribute("Players", playerRepo.findAll(pageable));		
 		
