@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -10,8 +10,33 @@
     <a th:href="@{/Add}">Add Player</a>
     <a th:href="@{/View}">View Teams</a>
 </nav>
-<h1>View</h1>
+<h1>Search</h1>
+<form th:action="@{/searchTitle}" method="Post">
+title
+<input type="text" name="title"><br>
+<input type="submit" Value="Search by title">
 
+
+</form>
+<form th:action="@{/searchPrice}" method="Post">
+Price
+<input type="text" name="price"><br>
+<input type="submit" Value="Search by price">
+
+
+</form>
+<!--  
+<form th:action="@{/searchGenre}" method="Post" th:object="${genre}">
+genre
+<select th:field="*{genre}">
+	<option th:each="genre:*{genres}" th:value="${genre}" th:text="${genre}"></option>
+
+</select><br>
+<input type="submit" Value="Search by genre">
+
+
+</form>
+-->
 <table border=1>
 	<tr>
 		<th>id</th>
@@ -29,9 +54,6 @@
 		<th th:if="${game.genre=='Horror'}">
     <img th:src="@{/img/ghost.avif}" style="width:40px; height:auto;">
 </th>
-
-		<td><a th:href="@{/edit/{id}(id=${game.id})}">Edit</a></td>
-		<td><a th:href="@{'/delete/'+${game.id}}">Delete</a></td>
 	</tr>
 
 </table>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Add Player</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a th:href="@{/add}">Add Player</a>
+    <a th:href="@{/view}">View Teams</a>
+</nav>
+
+<h1>Add Player</h1>
+
+<form th:action="@{/add}" method="post" th:object="${Player}">
+    
+    <label>Name</label>
+    <input type="text" th:field="*{name}" required>
+
+    <label>Guild Point</label>
+    <input type="number" step="0.1" th:field="*{guildPoint}" required>
+
+    <label>Class</label>
+    <ul>
+        <li th:each="class : *{classes}">
+            <input type="radio"
+                   th:field="*{unitClass}"
+                   th:value="${class}"
+                   required>
+            <label th:text="${class}"></label>
+        </li>
+    </ul>
+
+    <input type="submit" value="Add Player">
+
+</form>
+
+</body>
+</html>

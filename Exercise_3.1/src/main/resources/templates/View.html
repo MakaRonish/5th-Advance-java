@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>View Players</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<nav>
+    <a th:href="@{/add}">Add Player</a>
+    <a th:href="@{/view}">View Teams</a>
+</nav>
+
+<h1>Players List</h1>
+
+<table>
+    <tr>
+        <th><a th:href="@{/id}">ID</a></th>
+        <th><a th:href="@{/name}">Name</a></th>
+        <th><a th:href="@{/class}">Class</a></th>
+        <th><a th:href="@{/points}">Points</a></th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    <tr th:each="player : ${Players}">
+        <td th:text="${player.id}"></td>
+        <td th:text="${player.name}"></td>
+        <td th:text="${player.unitClass}"></td>
+        <td th:text="${player.guildPoint}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${player.id})}">Edit</a>
+        </td>
+        <td>
+            <a th:href="@{/delete/{id}(id=${player.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

@@ -15,6 +15,7 @@ public class VideogameBootstrap implements CommandLineRunner {
 	
 	@Override
 	public void run(String... arg) throws Exception{
+		for(int i=0;i<10;i++) {
 		Videogame g1= new Videogame("Dead Space",1234,22.22,"Horror");
 		Videogame g2= new Videogame("PUBG",5678,99.99,"Action");
 		Videogame g3= new Videogame("Minecraft",9101,88.67,"RPG");
@@ -25,7 +26,7 @@ public class VideogameBootstrap implements CommandLineRunner {
 		vgRepo.save(g2);
 		vgRepo.save(g3);
 		vgRepo.save(g4);
-		vgRepo.save(g5);
+		vgRepo.save(g5);}
 	}
 
 }

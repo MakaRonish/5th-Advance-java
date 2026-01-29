@@ -1,0 +1,147 @@
+@charset "UTF-8";
+/* Reset + base */
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f4f6f8;
+    color: #333;
+}
+
+/* Navigation */
+nav {
+    background: #1e293b;
+    padding: 15px;
+    display: flex;
+    gap: 20px;
+    justify-content:center;
+    align-items:center;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Page container */
+h1 {
+    text-align: center;
+    margin-top: 25px;
+}
+
+/* Form styling */
+form {
+    background: #ffffff;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0 15px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+/* Radio list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+/* Header links (sorting links) */
+th a {
+    color: #ffffff;          /* make text white */
+    text-decoration: none;   /* remove underline */
+    font-weight: 600;
+}
+
+th a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+/* Ensure header background stays clean */
+th {
+    background: #1e293b;
+    color: white;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* Buttons */
+input[type="submit"] {
+    width: 100%;
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background: #1d4ed8;
+}
+
+/* Table */
+table {
+    width: 80%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+th, td {
+    padding: 14px;
+    text-align: center;
+}
+
+th {
+    background: #1e293b;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f1f5f9;
+}
+
+tr:hover {
+    background: #e5e7eb;
+}
+
+/* Table links */
+td a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
