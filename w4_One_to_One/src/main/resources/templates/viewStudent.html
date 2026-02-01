@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>View Student</h1>
+
+<table border=1 >
+<tr>
+	<th>student id</th>
+	<th>student name</th>
+	<th>account id</th>
+	<th>account number</th>
+	<th> account status</th>
+	<th> account balance</th>
+</tr>
+<tr th:each="stu:${students}">
+	<th th:text="${stu.id}"></th>
+	<th th:text="${stu.name}"></th>
+	<th th:if="${stu.account}!=null" th:text="${stu.account.id}"></th>
+	<th th:if="${stu.account}!=null" th:text="${stu.account.accountNumber}"></th>
+	<th th:if="${stu.account}!=null" th:text="${stu.account.status}"></th>
+	<th th:unless="${stu.account}==null" th:text="${stu.account.balance}"></th>
+</tr>
+
+
+</table>
+</body>
+</html>
