@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registered Guests</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body>
+
+<div class="container">
+    <h1>📋 Registered Guests</h1>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Guest ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Pet ID</th>
+                <th>Pet Name</th>
+                <th>Pet Species</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="g : ${guest}">
+                <td th:text="${g.id}"></td>
+                <td th:text="${g.name}"></td>
+                <td th:text="${g.age}"></td>
+
+                <td th:text="${g.pet != null ? g.pet.id : '-'}"></td>
+                <td th:text="${g.pet != null ? g.pet.name : 'N/A'}"></td>
+                <td th:text="${g.pet != null ? g.pet.species : 'N/A'}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="nav-link">
+        <a th:href="@{/add}">➕ Add New Guest</a>
+    </div>
+</div>
+
+</body>
+</html>
