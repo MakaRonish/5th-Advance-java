@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Stores</h1>
+<table>
+<tr>
+<th>Store Name</th>
+<th>Store ID</th>
+<th>Employees Working</th>
+</tr>
+<tr th:each="s:${store}">
+<td th:text="${s.name}"></td>
+<td th:text="${s.id}"></td>
+
+<td>
+	<ul th:each="e:${s.employees}">
+		<li th:text="${e.name}"></li>
+	</ul>
+</td>
+<td>
+
+</td>
+</tr>
+
+</table>
+
+<div th:each="s:${store}">
+<h1 th:text="${s.name}"></h1>
+<h1 th:text="${s.id}"></h1>
+<table border=1 >
+<tr>
+<th>Employee id</th>
+<th>Employee name</th>
+</tr>
+<tr th:each="e:${s.employees}">
+<td th:text="${e.id}"></td>
+<td th:text="${e.name}"></td>
+</tr>
+
+</table>
+</div>
+</body>
+</html>
