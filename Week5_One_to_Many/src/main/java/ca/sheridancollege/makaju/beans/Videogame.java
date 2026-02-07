@@ -8,28 +8,33 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Entity
-public class Store {
+public class Videogame {
 	
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-	private String name;
+	private String title;
+	private double price;
 	
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="store")
-	private List<Employee> employees;
-	@ManyToMany()
-	private List<Videogame> videogames;
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="videogames")
+	
+	private List<Store> stores;
+
+	@Override
+	public String toString() {
+		return "Videogame [id=" + id + ", title=" + title + ", price=" + price + ", ]";
+	}
+	
+	
 
 }

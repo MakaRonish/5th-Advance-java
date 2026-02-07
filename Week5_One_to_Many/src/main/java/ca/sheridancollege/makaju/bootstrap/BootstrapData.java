@@ -1,12 +1,16 @@
 package ca.sheridancollege.makaju.bootstrap;
 
+import java.util.List;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import ca.sheridancollege.makaju.Repositories.EmployeeRepository;
 import ca.sheridancollege.makaju.Repositories.StoreRepository;
+import ca.sheridancollege.makaju.Repositories.VideogameRepository;
 import ca.sheridancollege.makaju.beans.Employee;
 import ca.sheridancollege.makaju.beans.Store;
+import ca.sheridancollege.makaju.beans.Videogame;
 import lombok.AllArgsConstructor;
 
 @Component
@@ -16,6 +20,7 @@ public class BootstrapData implements CommandLineRunner {
 	
 	private EmployeeRepository empRepo;
 	private StoreRepository storeRepo;
+	private VideogameRepository videoRepo;
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
@@ -37,7 +42,33 @@ public class BootstrapData implements CommandLineRunner {
 		Store s3 = Store.builder().name("Store 3").build();
 		Store s4 = Store.builder().name("Store 4").build();
 		Store s5 = Store.builder().name("Store 5").build();
+		
+		//Videogame
+		Videogame v1= Videogame.builder().title("PUBG").price(100).build();
+		Videogame v2 = Videogame.builder().title("Call of Duty").price(90).build();
+		Videogame v3 = Videogame.builder().title("FIFA 24").price(80).build();
+		Videogame v4 = Videogame.builder().title("GTA V").price(70).build();
+		Videogame v5 = Videogame.builder().title("Minecraft").price(40).build();
+		Videogame v6 = Videogame.builder().title("Fortnite").price(0).build();
+		Videogame v7 = Videogame.builder().title("Apex Legends").price(0).build();
+		Videogame v8 = Videogame.builder().title("Elden Ring").price(85).build();
+		Videogame v9 = Videogame.builder().title("Cyberpunk 2077").price(75).build();
+		Videogame v10 = Videogame.builder().title("Valorant").price(0).build();
+		Videogame v11 = Videogame.builder().title("Red Dead Redemption 2").price(90).build();
 
+		
+		videoRepo.save(v1);
+		videoRepo.save(v2);
+		videoRepo.save(v3);
+		videoRepo.save(v4);
+		videoRepo.save(v5);
+		videoRepo.save(v6);
+		videoRepo.save(v7);
+		videoRepo.save(v8);
+		videoRepo.save(v9);
+		videoRepo.save(v10);
+		videoRepo.save(v11);
+		
 		// Save stores first (best practice)
 		storeRepo.save(s1);
 		storeRepo.save(s2);
@@ -71,7 +102,36 @@ public class BootstrapData implements CommandLineRunner {
 		empRepo.save(e7);
 		empRepo.save(e8);
 		empRepo.save(e9);
-		empRepo.save(e10); // employee without store (optional case)
+		empRepo.save(e10);
+		
+		// employee without store (optional case)
+		// Link videogames to stores
+
+		// Store 1 sells popular paid games
+		s1.setVideogames(List.of(v1, v2, v3, v4));
+
+		// Store 2 sells free + competitive games
+		s2.setVideogames(List.of(v6, v7, v10));
+
+		// Store 3 sells a mix
+		s3.setVideogames(List.of(v3, v5, v8, v9));
+
+		// Store 4 sells AAA titles
+		s4.setVideogames(List.of(v4, v8, v11));
+
+		// Store 5 sells everything
+		s5.setVideogames(List.of(
+		        v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
+		));
+		
+		storeRepo.save(s1);
+		storeRepo.save(s2);
+		storeRepo.save(s3);
+		storeRepo.save(s4);
+		storeRepo.save(s5);
+
+
+		
 
 	}
 
