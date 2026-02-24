@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>All Owners</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="page-overlay"></div>
+<div class="navbar">
+    <div class="logo"><a th:href="@{/}">DOGSHOW</a></div>
+
+    <div class="nav-links">
+        <a th:href="@{/addDog}">Add Dog</a>
+        <a th:href="@{/addOwner}">Add Owner</a>
+        <a th:href="@{/addJudge}">Add Judge</a>
+        <a th:href="@{/assignOwner}">Assign Owner</a>
+        <a th:href="@{/assignJudge}">Assign Judge</a>
+        <a th:href="@{/viewDogs}">View Dogs</a>
+        <a th:href="@{/viewOwners}">View Owners</a>
+        <a th:href="@{/viewJudges}">View Judges</a>
+    </div>
+</div>
+
+<div class="page-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <span class="page-eyebrow">Registry</span>
+            <h1 class="page-title">All Owners</h1>
+            <div class="page-line"></div>
+        </div>
+
+        <div class="filter-bar">
+            <form th:action="@{/viewOwners}" method="get">
+                <div class="filter-row">
+                    <label>Filter by Owner</label>
+                    <select name="ownerId">
+                        <option value="">— Show All —</option>
+                        <option th:each="o : ${allOwners}" th:value="${o.id}" th:text="${o.firstName + ' ' + o.lastName}"></option>
+                    </select>
+                    <button type="submit">Filter</button>
+                </div>
+            </form>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Owner</th>
+                    <th>Dogs & Judges</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="o : ${owners}">
+                    <td th:text="${o.firstName + ' ' + o.lastName}"></td>
+                    <td>
+                        <div class="nested-list">
+                            <div class="nested-item" th:each="d : ${o.dogs}">
+                                <span class="dog-name" th:text="${d.name}"></span>
+                                <div class="judge-tags">
+                                    <span class="judge-tag" th:each="j : ${d.judges}" th:text="${j.name}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="page-footer-link">
+            <a th:href="@{/}">← Back to Home</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

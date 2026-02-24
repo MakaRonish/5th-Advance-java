@@ -1,5 +1,6 @@
 package ca.sheridancollege.makaju.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -112,6 +113,75 @@ public class MainController {
         dogRepo.save(dog);
 
         return "redirect:/";
+    }
+    
+    @GetMapping("/viewDogs")
+    public String viewDogs(@RequestParam(required = false) Long dogId,
+                           Model model) {
+
+        List<Dog> dogs;
+
+        if (dogId != null) {
+            dogs = new ArrayList<>();
+            dogs.add(dogRepo.findById(dogId).get());
+        } else {
+            dogs = dogRepo.findAll();
+        }
+
+        model.addAttribute("dogs", dogs);
+        model.addAttribute("allDogs", dogRepo.findAll());
+
+        return "viewDogs";
+    }
+    
+    @GetMapping("/removeJudge")
+    public String removeJudge(@RequestParam Long dogId,
+                              @RequestParam Long judgeId) {
+
+        Dog dog = dogRepo.findById(dogId).get();
+        Judge judge = judgeRepo.findById(judgeId).get();
+
+        dog.getJudges().remove(judge);
+        dogRepo.save(dog);
+
+        return "redirect:/viewDogs";
+    }
+    @GetMapping("/viewOwners")
+    public String viewOwners(@RequestParam(required = false) Long ownerId,
+                             Model model) {
+
+        List<Owner> owners;
+
+        if (ownerId != null) {
+            owners = new ArrayList<>();
+            owners.add(ownerRepo.findById(ownerId).get());
+        } else {
+            owners = ownerRepo.findAll();
+        }
+
+        model.addAttribute("owners", owners);
+        model.addAttribute("allOwners", ownerRepo.findAll());
+
+        return "viewOwners";
+    }
+    
+    @GetMapping("/viewJudges")
+    public String viewJudges(@RequestParam(required = false) Long judgeId,
+                             Model model) {
+
+        List<Judge> judges;
+
+        if (judgeId != null) {
+            judges = new ArrayList<>();
+            judges.add(judgeRepo.findById(judgeId).get());
+        } else {
+            judges = judgeRepo.findAll();
+        }
+
+        model.addAttribute("judges", judges);
+        model.addAttribute("allJudges", judgeRepo.findAll());
+
+        return "viewJudges";
     }
 
 }

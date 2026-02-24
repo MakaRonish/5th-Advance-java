@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <title>Dog Show Management</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<h1>Home</h1>
+
+<div class="navbar">
+    <div class="logo"><a th:href="@{/}">DOGSHOW</a></div>
+
+    <div class="nav-links">
+        <a th:href="@{/addDog}">Add Dog</a>
+        <a th:href="@{/addOwner}">Add Owner</a>
+        <a th:href="@{/addJudge}">Add Judge</a>
+        <a th:href="@{/assignOwner}">Assign Owner</a>
+        <a th:href="@{/assignJudge}">Assign Judge</a>
+        <a th:href="@{/viewDogs}">View Dogs</a>
+        <a th:href="@{/viewOwners}">View Owners</a>
+        <a th:href="@{/viewJudges}">View Judges</a>
+    </div>
+</div>
+
+<div class="hero">
+    <img class="hero-bg" src="/images/1.jpg" alt="hero background">
+    <div class="hero-content">
+        <span class="hero-eyebrow">Professional Management System</span>
+        <h1>Beyond The Competition</h1>
+        <div class="hero-line"></div>
+        <p>The ultimate platform to manage dogs, owners, and judges all in one elegant system built for champions.</p>
+        <div class="hero-buttons">
+            <a href="/viewDogs">See Dogs</a>
+            <a href="/">&#9654;</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

@@ -2,36 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Assign Owner</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+<div class="page-overlay"></div>
+<div class="navbar">
+    <div class="logo"><a th:href="@{/}">DOGSHOW</a></div>
 
-<h2>Assign Owner to Dog</h2>
+    <div class="nav-links">
+        <a th:href="@{/addDog}">Add Dog</a>
+        <a th:href="@{/addOwner}">Add Owner</a>
+        <a th:href="@{/addJudge}">Add Judge</a>
+        <a th:href="@{/assignOwner}">Assign Owner</a>
+        <a th:href="@{/assignJudge}">Assign Judge</a>
+        <a th:href="@{/viewDogs}">View Dogs</a>
+        <a th:href="@{/viewOwners}">View Owners</a>
+        <a th:href="@{/viewJudges}">View Judges</a>
+    </div>
+</div>
 
-<form th:action="@{/assignOwner}" method="post">
+<div class="page-wrapper">
+    <div class="container">
+        <div class="page-header">
+            <span class="page-eyebrow">Assignment</span>
+            <h1 class="page-title">Assign Owner</h1>
+            <div class="page-line"></div>
+        </div>
 
-    Select Dog:
-    <select name="dogId">
-        <option th:each="d : ${dogs}"
-                th:value="${d.id}"
-                th:text="${d.name}">
-        </option>
-    </select>
-    <br><br>
+        <div class="form-card">
+            <form th:action="@{/assignOwner}" method="post">
+                <div class="form-group">
+                    <label>Select Dog</label>
+                    <select name="dogId">
+                        <option th:each="d : ${dogs}" th:value="${d.id}" th:text="${d.name}"></option>
+                    </select>
+                </div>
 
-    Select Owner:
-    <select name="ownerId">
-        <option th:each="o : ${owners}"
-                th:value="${o.id}"
-                th:text="${o.firstName + ' ' + o.lastName}">
-        </option>
-    </select>
-    <br><br>
+                <div class="form-group">
+                    <label>Select Owner</label>
+                    <select name="ownerId">
+                        <option th:each="o : ${owners}" th:value="${o.id}" th:text="${o.firstName + ' ' + o.lastName}"></option>
+                    </select>
+                </div>
 
-    <button type="submit">Assign</button>
-</form>
-
-<br>
-<a th:href="@{/}">Back to Home</a>
+                <div class="form-actions">
+                    <button type="submit">Assign Owner</button>
+                    <a th:href="@{/}" class="btn-back">← Back to Home</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
