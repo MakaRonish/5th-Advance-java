@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/view/shirts}">Shirts</a>
+    <a th:href="@{/add}">Add Shirt</a>
+    <a th:href="@{/view/therapist}">Therapist</a>
+    <a class="add" th:href="@{/addTherapist}">Add Therapist</a>
+</nav>
+
+<div class="container">
+    <h1>Therapist </h1>
+    <p>Use the navigation bar to view, add, or purchase shirts.</p>
+</div>
+</body>
+</html>

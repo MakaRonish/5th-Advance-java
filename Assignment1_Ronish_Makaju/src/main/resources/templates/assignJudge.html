@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Assign Judge</title>
+</head>
+<body>
+
+<h2>Assign Judge to Dog</h2>
+
+<form th:action="@{/assignJudge}" method="post">
+
+    Select Dog:
+    <select name="dogId">
+        <option th:each="d : ${dogs}" th:value="${d.id}" th:text="${d.name}"></option>
+    </select>
+    <br><br>
+
+    Select Judges:
+    <select name="judgeIds" multiple size="5">
+        <option th:each="j : ${judges}" th:value="${j.id}" th:text="${j.name}"></option>
+    </select>
+    <br><br>
+
+    <button type="submit">Assign Judges</button>
+</form>
+
+<br>
+<a th:href="@{/}">Back to Home</a>
+
+</body>
+</html>
