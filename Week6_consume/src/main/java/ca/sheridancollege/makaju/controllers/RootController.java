@@ -3,6 +3,7 @@ package ca.sheridancollege.makaju.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 
 import ca.sheridancollege.makaju.beans.Student;
+import ca.sheridancollege.makaju.services.AuthenticationService;
 import ca.sheridancollege.makaju.services.StudentService;
 import lombok.AllArgsConstructor;
 
 
 @Controller
-
+@AllArgsConstructor
 public class RootController {
+	
+	private AuthenticationService authenticationService;
 	private final String REST_URL="http://localhost:8080/api/v1/students/";
 	
 	
@@ -37,7 +41,10 @@ public class RootController {
 	@PostMapping("/add")
 	private String processadd(@ModelAttribute Student student,RestTemplate restTemplate) {
 		
-		ResponseEntity<Student> responseEntity=restTemplate.postForEntity(REST_URL, student, Student.class);
+		ResponseEntity<Student> responseEntity=
+				authenticationService.standardRequest(restTemplate, REST_URL, HttpMethod.POST, student, Student.class);
+				
+				//restTemplate.postForEntity(REST_URL, student, Student.class);
 		
 		System.out.println(responseEntity.getBody());
 		
@@ -47,7 +54,9 @@ public class RootController {
 	@GetMapping("/view")
 	private String view(Model model, RestTemplate restTemplate) {
 		
-		ResponseEntity<Student[]> responseEntity= restTemplate.getForEntity(REST_URL,Student[].class);
+		ResponseEntity<Student[]> responseEntity= 
+				authenticationService.standardRequest(restTemplate, REST_URL, HttpMethod.GET, "", Student[].class);
+				//restTemplate.getForEntity(REST_URL,Student[].class);
 		
 		
 		
@@ -57,7 +66,10 @@ public class RootController {
 	}
 	@GetMapping("/edit/{id}")
 	public String editGame(@PathVariable long id,Model model, RestTemplate restTemplate) {
-		ResponseEntity<Student> responseEntity= restTemplate.getForEntity(REST_URL+"/"+id,Student.class);
+		ResponseEntity<Student> responseEntity= 
+				authenticationService.standardRequest(restTemplate, REST_URL+"/"+id, HttpMethod.GET, "", Student.class);
+				
+				//restTemplate.getForEntity(REST_URL+"/"+id,Student.class);
 		model.addAttribute("student", responseEntity.getBody());
 		
 		
