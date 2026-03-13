@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import ca.sheridancollege.makaju.beans.Student;
@@ -89,6 +91,14 @@ public class RootController {
 		restTemplate.delete(REST_URL+"/"+id);
 		
 		return "redirect:/view";
+	}
+	
+	@GetMapping(value = "/getStudentAsJSON/{id}", produces = "application/json")
+	@ResponseBody
+	public Student getStudentAsJSON(Model model,
+			@PathVariable Long id, RestTemplate resttemplate) {
+		
+		return authenticationService.standardRequest(resttemplate, REST_URL+"/"+id, HttpMethod.GET, "", Student.class).getBody();
 	}
 
 }

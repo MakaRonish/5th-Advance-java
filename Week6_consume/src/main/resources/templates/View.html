@@ -3,9 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../static/js/scripts.js"
+	th:src="@{/js/scripts.js}">
+
+</script>
 </head>
 <body>
 <h1>View</h1>
+
+
+<div th:each="stu:${studentList}">
+	<h1><a href="#" th:onclick="'getStudentAsJSON(' + ${stu.id} + ')'" th:text="${stu.name}"></a></h1>
+	<div th:id = "'student' + ${stu.id} "></div>
+</div>
 
 
 <table border=1 >
