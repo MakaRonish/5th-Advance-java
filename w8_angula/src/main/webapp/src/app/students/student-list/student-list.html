@@ -1,0 +1,15 @@
+<h3>Student List</h3>
+
+<table border="1">
+	<tr>
+		<th>Name</th>
+		<th>Age</th>
+	</tr>
+	@for (student of studentService.students(); track student.id){
+	<tr>
+		<td>{{ student.name }}</td>
+		<td>{{ student.age }}</td>
+	</tr>
+	}
+
+</table>
